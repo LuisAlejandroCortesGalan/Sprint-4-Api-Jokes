@@ -1,0 +1,183 @@
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("/img/blop.png") center/cover no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.4;
+    /* Controla la opacidad de la imagen */
+    z-index: -1;
+    /* Coloca la imagen detrás del contenido */
+}
+
+div {
+    background-color: white !important;
+    border-radius: 10px !important;
+    box-shadow: 5px 5px 5px grey;
+    width: 40% !important;
+}
+
+button {
+    padding: 10rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+#emoji-selector .list-group-item {
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid grey;
+}
+
+#emoji-selector .list-group-item.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.gap-5 {
+    gap: 1rem !important;
+}
+
+
+.temperatura {
+    position: absolute;
+    top: 0 !important;
+    color: darkblue;
+
+    p {
+        font-size: 1rem;
+        line-height: 0.4;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    img {
+        width: 40%;
+        margin: 0 auto;
+        border: solid 1px black;
+        border-radius: 5px;
+        background-color: #0d6efd;
+    }
+}
+
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+
+    .temperatura {
+        position: absolute !important;
+        top: 0 !important;
+        margin-top: 20px;
+        color: #003366;
+    }
+
+    .gap-5 {
+        gap: 0.5rem !important;
+    }
+
+    div {
+        width: 80% !important;
+        /* Aumenta el ancho del contenedor para móviles */
+        padding: 15px !important;
+        /* Reduce padding para móvil */
+    }
+
+    button {
+        width: 100%;
+        /* Hace que el botón ocupe todo el ancho en móviles */
+        padding: 15px;
+        /* Más padding para el botón en móvil */
+        font-size: 1.4rem;
+        /* Ajusta el tamaño de la fuente */
+    }
+
+    #emoji-selector {
+        flex-direction: column;
+        /* Hace que los emojis se apilen verticalmente en móviles */
+        gap: 15px;
+        /* Espacio entre emojis */
+    }
+
+    .temperatura {
+        position: relative;
+        margin-top: 20px;
+        color: #003366;
+    }
+
+    .temperatura h3 {
+        font-size: 1.2rem;
+    }
+
+    .temperatura p {
+        font-size: 1rem;
+    }
+
+    .temperatura img {
+        width: 40%;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+/* Media query para pantallas muy pequeñas (por ejemplo, móviles pequeños) */
+@media (max-width: 480px) {
+
+    .temperatura {
+        position: absolute;
+        top: 0 !important;
+        margin-top: 10px;
+        color: #003366;
+        h3 {
+            font-size: 0.8rem;
+        }
+
+        p {
+            font-size: 0.6rem;
+        }
+    }
+
+    div {
+        width: 70% !important;
+        /* Aumenta aún más el ancho del contenedor */
+        padding: 10px !important;
+        /* Reduce padding */
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+        /* Ajuste en el tamaño del título */
+    }
+
+    button {
+        padding: 12px;
+        /* Ajusta el padding */
+        font-size: 0.5rem;
+        /* Ajuste en el tamaño de la fuente */
+    }
+
+    #emoji-selector .list-group-item {
+        font-size: 12px;
+        /* Reduce el tamaño de los emojis en pantallas más pequeñas */
+    }
+
+    .temperatura img {
+        width: 40%;
+    }
+}
