@@ -31,6 +31,39 @@ async function pedirChistes() {
     });
 }
 
+async function pedirChistesChuck() {
+    const mostrar = document.getElementById('mostrarChiste');
+    try {
+        const response = await fetch('https://api.chucknorris.io/jokes/random', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener el chiste Chuck Norrris');
+        }
+        const data = await response.json();
+        mostrar!.textContent = data.value;
+        currentJoke = data.value;
+
+
+    } catch (error) {
+        // Si hay un error, mostramos un mensaje adecuado
+        mostrar!.textContent = 'Hubo un error al pedir los chistes Chuck Norris';
+        console.error("Error al obtener los chistes de Chuck Norris");
+    }
+
+    guardarPuntuacion()
+    emojiItem.forEach((item: HTMLElement) => {
+        // Eliminar la clase 'selected'
+        item.classList.remove('selected');
+        // Resetear la calificación
+        calificacion = 0;
+        console.log("a VER si se quita al pedir nuevo chiste", calificacion);
+    });
+}
+
 // Función para obtener los datos meteorológicos
 async function pedirClima(ciudad: string = "Barcelona"): Promise<void> {
     // URL de la API con el parámetro de la ciudad
@@ -52,31 +85,13 @@ async function pedirClima(ciudad: string = "Barcelona"): Promise<void> {
         // Obtener los datos de la respuesta
         const nombreIcono: string = jsonMeteo.weather[0].icon;
         const ciudad: string = jsonMeteo.name;
-        const pais: string = jsonMeteo.sys.country;
         const temperatura: number = jsonMeteo.main.temp;
-        const tempMax: number = jsonMeteo.main.temp_max;
-        const tempMin: number = jsonMeteo.main.temp_min;
-        const sensaTemp: number = jsonMeteo.main.feels_like;
-        const humedad: number = jsonMeteo.main.humidity;
 
-        // Mostrar los resultados en consola (puedes adaptarlo para mostrar en la UI)
-        console.log(`Ciudad: ${ciudad}, País: ${pais}`);
-        console.log(`Temperatura: ${temperatura}°C`);
-        console.log(`Temperatura Máxima: ${tempMax}°C`);
-        console.log(`Temperatura Mínima: ${tempMin}°C`);
-        console.log(`Sensación Térmica: ${sensaTemp}°C`);
-        console.log(`Humedad: ${humedad}%`);
-        console.log(`Icono: ${nombreIcono}`);
 
         // Aquí puedes mostrar los datos en tu HTML (si lo deseas)
-        document.getElementById("ciudad")!.textContent = `Ciudad: ${ciudad}`;
-        document.getElementById("temperatura")!.textContent = `Temperatura: ${temperatura}°C`;
-        document.getElementById("temp_max")!.textContent = `Temp. Max: ${tempMax}°C`;
-        document.getElementById("temp_min")!.textContent = `Temp. Min: ${tempMin}°C`;
-        document.getElementById("sensa_temp")!.textContent = `Sensación: ${sensaTemp}°C`;
-        document.getElementById("humedad")!.textContent = `Humedad: ${humedad}%`;
+        document.getElementById("ciudad")!.textContent = `${ciudad}`;
+        document.getElementById("temperatura")!.textContent = `${temperatura}°C`;
         document.getElementById("icono")?.setAttribute("src", `https://openweathermap.org/img/wn/${nombreIcono}.png`);
-
     } catch (error) {
         console.error("Error al obtener los datos meteorológicos: ", error);
     }
@@ -86,9 +101,46 @@ pedirClima();
 // Llamamos a la función, puedes pasar un nombre de ciudad diferente
 const ciudad = "Barcelona";
 
+
+
+//Cambiamos el fondo con cada chiste
+
+let arrayFondo = [
+    "/img/blops/blob1.png",
+    "/img/blops/blob2.png",
+    "/img/blops/blob3.png",
+    "/img/blops/blob4.png",
+    "/img/blops/blob5.png",
+    "/img/blops/blob6.png",
+    "/img/blops/blob7.png",
+    "/img/blops/blob8.png",
+    "/img/blops/blob9.png",
+    "/img/blops/blob10.png",
+    "/img/blops/blob11.png",
+    "/img/blops/blob12.png"
+];
+
+function cambiarFondo() {
+    let numeroRandom = Math.floor(Math.random() * 11);
+    console.log(numeroRandom);
+    document.body.style.background = ""; 
+    document.body.style.background = `url(${arrayFondo[numeroRandom]}) center/cover no-repeat`;
+    
+}
+
+
+
 function mostrar() {
-    pedirChistes();
+    let random = Math.floor(Math.random() * 2);
+    if (random === 0) {
+        pedirChistes();
+    } else {
+        pedirChistesChuck();
+    }
     pedirClima();
+    cambiarFondo();
+    console.log("ver el random mostrar para chiste", random);
+    
 }
 
 let currentJoke = '';
@@ -176,7 +228,7 @@ function pushearCalificaciones(joke: string, score: number, date: Date) {
     });
 }
 
-
+pedirChistesChuck();
 pedirChistes();
 
 function guardarPuntuacion() {
