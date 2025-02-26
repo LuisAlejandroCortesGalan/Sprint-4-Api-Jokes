@@ -105,19 +105,20 @@ const ciudad = "Barcelona";
 
 //Cambiamos el fondo con cada chiste
 
+
 let arrayFondo = [
-    "/img/blops/blob1.png",
-    "/img/blops/blob2.png",
-    "/img/blops/blob3.png",
-    "/img/blops/blob4.png",
-    "/img/blops/blob5.png",
-    "/img/blops/blob6.png",
-    "/img/blops/blob7.png",
-    "/img/blops/blob8.png",
-    "/img/blops/blob9.png",
-    "/img/blops/blob10.png",
-    "/img/blops/blob11.png",
-    "/img/blops/blob12.png"
+    "./img/blops/blob1.png",
+    "./img/blops/blob2.png",
+    "./img/blops/blob3.png",
+    "./img/blops/blob4.png",
+    "./img/blops/blob5.png",
+    "./img/blops/blob6.png",
+    "./img/blops/blob7.png",
+    "./img/blops/blob8.png",
+    "./img/blops/blob9.png",
+    "./img/blops/blob10.png",
+    "./img/blops/blob11.png",
+    "./img/blops/blob12.png"
 ];
 
 function cambiarFondo() {
